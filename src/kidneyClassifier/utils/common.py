@@ -30,7 +30,6 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
         with open(path_to_yaml) as yaml_file:
             content = yaml.safe_load(yaml_file)
             logger.info(f"yaml file: {path_to_yaml} loaded successfully")
-            print(f"Content type: {type(content)}") # Debug statement
             return ConfigBox(content)
     except BoxValueError:
         raise ValueError("yaml file is empty")
@@ -136,4 +135,3 @@ def decodeImage(imgstring, fileName):
 def encodeImageIntoBase64(croppedImagePath):
     with open(croppedImagePath, "rb") as f:
         return base64.b64encode(f.read())
-
