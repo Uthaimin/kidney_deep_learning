@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/USER/anaconda3/Scripts/kidney_deep_learning/mlruns/0/cc6fcecfc0fe497384730348871856b5/artifacts
+end_time: 1736676009256
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: cc6fcecfc0fe497384730348871856b5
+run_name: bouncy-rat-391
+run_uuid: cc6fcecfc0fe497384730348871856b5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1736675995630
+status: 4
+tags: []
+user_id: USER

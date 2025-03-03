@@ -2,6 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*research/
+*artifacts/
+*logs
+*.ipynb
 
 # C extensions
 *.so
@@ -25,6 +29,11 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+artifacts
+research
+research
+
+
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -169,3 +178,7 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+.mlfow/
+.scores.json
+*.mlfow
+.mlfow

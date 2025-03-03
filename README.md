@@ -67,8 +67,8 @@ open up you local host and port
 ### dagshub
 [dagshub](https://dagshub.com/)
 
-MLFLOW_TRACKING_URI=https://dagshub.com/entbappy/Kidney-Disease-Classification-MLflow-DVC.mlflow \
-MLFLOW_TRACKING_USERNAME=entbappy \
+MLFLOW_TRACKING_URI=https://dagshub.com/Uthaimin/kidney_deep_learning.mlflow\
+MLFLOW_TRACKING_USERNAME=uthaimin \
 MLFLOW_TRACKING_PASSWORD=6824692c47a369aa6f9eac5b10041d5c8edbcef0 \
 python script.py
 
@@ -76,7 +76,7 @@ Run this to export as env variables:
 
 ```bash
 
-export MLFLOW_TRACKING_URI=https://dagshub.com/entbappy/Kidney-Disease-Classification-MLflow-DVC.mlflow
+export MLFLOW_TRACKING_URI=https://dagshub.com/Uthaimin/kidney_deep_learning.mlflow
 
 export MLFLOW_TRACKING_USERNAME=entbappy 
 
@@ -142,7 +142,7 @@ DVC
 
 	
 ## 3. Create ECR repo to store/save docker image
-    - Save the URI: 566373416292.dkr.ecr.us-east-1.amazonaws.com/chicken
+    - Save the URI: 329599615695.dkr.ecr.us-east-1.amazonaws.com/new_kidney_class
 
 	
 ## 4. Create EC2 machine (Ubuntu) 

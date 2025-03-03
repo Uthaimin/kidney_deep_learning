@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/USER/anaconda3/Scripts/kidney_deep_learning/mlruns/0/1c46b1223e1947a688822603faff808a/artifacts
+end_time: 1736674191765
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1c46b1223e1947a688822603faff808a
+run_name: bustling-hare-895
+run_uuid: 1c46b1223e1947a688822603faff808a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1736671497619
+status: 3
+tags: []
+user_id: USER

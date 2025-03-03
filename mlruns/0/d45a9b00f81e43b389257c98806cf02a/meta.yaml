@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/USER/anaconda3/Scripts/kidney_deep_learning/mlruns/0/d45a9b00f81e43b389257c98806cf02a/artifacts
+end_time: 1738729749462
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d45a9b00f81e43b389257c98806cf02a
+run_name: trusting-loon-59
+run_uuid: d45a9b00f81e43b389257c98806cf02a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1738729718861
+status: 4
+tags: []
+user_id: USER

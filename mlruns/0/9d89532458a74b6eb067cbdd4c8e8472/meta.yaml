@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/USER/anaconda3/Scripts/kidney_deep_learning/mlruns/0/9d89532458a74b6eb067cbdd4c8e8472/artifacts
+end_time: 1736674821744
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 9d89532458a74b6eb067cbdd4c8e8472
+run_name: mysterious-wasp-342
+run_uuid: 9d89532458a74b6eb067cbdd4c8e8472
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1736674783025
+status: 4
+tags: []
+user_id: USER

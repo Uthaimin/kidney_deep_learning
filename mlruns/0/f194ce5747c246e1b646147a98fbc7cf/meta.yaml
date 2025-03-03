@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/USER/anaconda3/Scripts/kidney_deep_learning/mlruns/0/f194ce5747c246e1b646147a98fbc7cf/artifacts
+end_time: 1736678746883
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f194ce5747c246e1b646147a98fbc7cf
+run_name: delicate-skink-752
+run_uuid: f194ce5747c246e1b646147a98fbc7cf
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1736678657047
+status: 4
+tags: []
+user_id: USER

@@ -1,0 +1,15 @@
+artifact_uri: file:///c:/Users/USER/anaconda3/Scripts/kidney_deep_learning/mlruns/0/5c388a4ed6894b8886e85218bcf857f7/artifacts
+end_time: 1739728359547
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 5c388a4ed6894b8886e85218bcf857f7
+run_name: mercurial-kite-566
+run_uuid: 5c388a4ed6894b8886e85218bcf857f7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1739728336040
+status: 4
+tags: []
+user_id: USER
