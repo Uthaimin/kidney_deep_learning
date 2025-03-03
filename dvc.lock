@@ -1,0 +1,81 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/kidneyClassifier/pipeline/stage_01_data_ingestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: b932a4f34c0c91b71d3567299f481907
+      size: 588
+    - path: src/kidneyClassifier/pipeline/stage_01_data_ingestion.py
+      hash: md5
+      md5: 06738e62abe7aace9c0e30c3beacd80c
+      size: 917
+    outs:
+    - path: artifacts/data_ingestion/training folder
+      hash: md5
+      md5: f8f7a327f394366a187a71e31f24fde0.dir
+      size: 589986081
+      nfiles: 4575
+  prepare_base_model:
+    cmd: python src/kidneyClassifier/pipeline/stage_02_prepare_base_model.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: b932a4f34c0c91b71d3567299f481907
+      size: 588
+    - path: src/kidneyClassifier/pipeline/stage_02_prepare_base_model.py
+      hash: md5
+      md5: 04a2cf9074007b24125aba8c77ee8d66
+      size: 1008
+    params:
+      params.yaml:
+        CLASSES: 2
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+        INCLUDE_TOP: false
+        LEARNING_RATE: 0.01
+        WEIGHTS: imagenet
+    outs:
+    - path: artifacts/prepare_base_model
+      hash: md5
+      md5: 5f86654b4bf98f7af47541544c489ca7.dir
+      size: 118054560
+      nfiles: 2
+  training:
+    cmd: python src/kidneyClassifier/pipeline/stage_03_model_training.py
+    deps:
+    - path: artifacts/data_ingestion/training folder
+      hash: md5
+      md5: f8f7a327f394366a187a71e31f24fde0.dir
+      size: 589986081
+      nfiles: 4575
+    - path: artifacts/prepare_base_model
+      hash: md5
+      md5: 5f86654b4bf98f7af47541544c489ca7.dir
+      size: 118054560
+      nfiles: 2
+    - path: config/config.yaml
+      hash: md5
+      md5: b932a4f34c0c91b71d3567299f481907
+      size: 588
+    - path: src/kidneyClassifier/pipeline/stage_03_model_training.py
+      hash: md5
+      md5: d8c7ab9e17e1b31322e80f9435b05d69
+      size: 936
+    params:
+      params.yaml:
+        AUGMENTATION: true
+        BATCH_SIZE: 32
+        EPOCHS: 200
+        IMAGE_SIZE:
+        - 224
+        - 224
+        - 3
+    outs:
+    - path: artifacts/training/model.h5
+      hash: md5
+      md5: 00542c237b3f05af7d2fc464f1199880
+      size: 59337520
