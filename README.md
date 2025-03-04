@@ -1,5 +1,6 @@
 # kidney_disease_class
-i will be building an ml system that will predict wheather a patient has kidney disease or not 
+I will be building a deep learning app capable of predicting wheather a scaned kidney image is normal kidney or tumored.
+This can asssist in early detection of tumor and prevent severe casess and loss of life. This can also help patients in underserved and underdeveloped part of the world where there is small number of medical personel to help with diagnosis. The data set to be used is available on kaggele and the link is provided below.
 # Kidney-Disease-Classification-MLflow-DVC
 
 
@@ -172,7 +173,7 @@ DVC
 
 # 7. Setup github secrets:
 
-    AWS_ACCESS_KEY_ID=
+    ACCESS=
 
     AWS_SECRET_ACCESS_KEY=
 
@@ -180,5 +181,5 @@ DVC
 
     AWS_ECR_LOGIN_URI = demo>>  566373416292.dkr.ecr.ap-south-1.amazonaws.com
 
-    ECR_REPOSITORY_NAME = simple-app
+    ECR_REPOSITORY_NAME = PREDICTION_app
 
