@@ -1,4 +1,4 @@
-stages:
+stages_involved:
   data_ingestion:
     cmd: python src/kidneyClassifier/pipeline/stage_01_data_ingestion.py
     deps:

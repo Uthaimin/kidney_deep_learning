@@ -23,7 +23,7 @@ This can asssist in early detection of tumor and prevent severe casess and loss 
 Clone the repository
 
 ```bash
-https://github.com/krishnaik06/Kidney-Disease-Classification-Deep-Learning-Project
+https://github.com/Uthaimin/kidney_deep_learning
 ```
 ### STEP 01- Create a conda environment after opening the repository
 
