@@ -143,7 +143,7 @@ DVC
 
 	
 ## 3. Create ECR repo to store/save docker image
-    - Save the URI: 329599615695.dkr.ecr.us-east-1.amazonaws.com/new_kidney_class
+    - Save the URI:329599615695.dkr.ecr.us-east-1.amazonaws.com/kidney_disease_class
 
 	
 ## 4. Create EC2 machine (Ubuntu) 
