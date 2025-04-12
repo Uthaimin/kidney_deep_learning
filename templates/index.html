@@ -1,60 +1,89 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>kidney-machine</title>
-  <link rel="shortcut icon" href="data:image/png;base64,...">
+  <title>MediScan Diagnostic Assistant</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
-        crossorigin="anonymous">
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     /* General Body Styling */
     body {
-      background: linear-gradient(to bottom right, #1b2d6b, #5cb85c);
+      background: linear-gradient(135deg, #1b2d6b, #3a7bd5);
       font-family: 'Inter', sans-serif;
       color: #f8f9fa;
       min-height: 100vh;
+      transition: all 0.3s ease;
     }
-    h3 {
+    h1, h2, h3 {
       color: #ffffff;
       font-weight: 700;
     }
     /* Card Styles */
     .card {
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: rgba(255, 255, 255, 0.95);
       border-radius: 15px;
-      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       overflow: hidden;
       color: #1b2d6b;
+      transition: all 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
     }
     .card-header {
       background-color: #1b2d6b;
       color: #ffffff;
       font-size: 1.5rem;
       text-align: center;
-      padding: 1rem 0;
+      padding: 1.2rem 0;
+      position: relative;
+    }
+    .card-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      width: 80%;
+      height: 3px;
+      background-color: #3a7bd5;
     }
     /* Button Styling */
+    .btn {
+      border-radius: 8px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      padding: 10px 20px;
+      transition: all 0.3s ease;
+    }
     .btn-primary {
       background-color: #1b2d6b;
       border: none;
-      transition: 0.3s ease-in-out;
     }
     .btn-primary:hover {
       background-color: #162452;
       transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(27, 45, 107, 0.4);
     }
     .btn-success {
-      background-color: #5cb85c;
+      background-color: #28a745;
       border: none;
-      transition: 0.3s ease-in-out;
     }
     .btn-success:hover {
-      background-color: #4cae4c;
+      background-color: #218838;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+    }
+    .btn-outline-light {
+      border: 2px solid #fff;
+      font-weight: 600;
+    }
+    .btn-outline-light:hover {
+      background-color: #fff;
+      color: #1b2d6b;
       transform: translateY(-2px);
     }
     /* Image preview container */
@@ -66,6 +95,12 @@
       justify-content: center;
       border-radius: 15px;
       overflow: hidden;
+      background-color: rgba(255, 255, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+    .image-preview:hover {
+      border-color: #3a7bd5;
+      background-color: rgba(255, 255, 255, 0.5);
     }
     .image-preview img, .image-preview video {
       width: 100%;
@@ -85,7 +120,7 @@
     }
     .loader {
       border: 8px solid #f3f3f3;
-      border-top: 8px solid #5cb85c;
+      border-top: 8px solid #3a7bd5;
       border-radius: 50%;
       width: 80px;
       height: 80px;
@@ -99,16 +134,154 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    @media (max-width: 768px) {
-      .image-preview {
-        height: 200px;
-      }
-    }
     /* Bold the displayed prediction result */
     #res-part pre {
       font-weight: 700;
       font-size: 1.2rem;
       color: #1b2d6b;
+    }
+    /* Landing Page Specific Styles */
+    .hero {
+      text-align: center;
+      padding: 80px 0;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      opacity: 0.9;
+    }
+    .features {
+      padding: 40px 0;
+    }
+    .feature-card {
+      text-align: center;
+      padding: 30px;
+      height: 100%;
+      border-radius: 15px;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-10px);
+      background-color: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #3a7bd5;
+    }
+    .nav-tabs {
+      border-bottom: none;
+      margin-bottom: 20px;
+    }
+    .nav-tabs .nav-link {
+      color: rgba(255, 255, 255, 0.7);
+      border: none;
+      border-bottom: 3px solid transparent;
+      border-radius: 0;
+      padding: 10px 20px;
+      transition: all 0.3s ease;
+    }
+    .nav-tabs .nav-link:hover {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+    .nav-tabs .nav-link.active {
+      color: #fff;
+      background-color: transparent;
+      border-color: #3a7bd5;
+      font-weight: 600;
+    }
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+      .image-preview {
+        height: 200px;
+      }
+      .feature-card {
+        margin-bottom: 20px;
+      }
+    }
+    /* Additional UI Improvements */
+    .upload-options {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+    .result-container {
+      min-height: 200px;
+      transition: all 0.3s ease;
+    }
+    .custom-select {
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .custom-select:focus {
+      border-color: #3a7bd5;
+      box-shadow: 0 0 0 0.2rem rgba(58, 123, 213, 0.25);
+    }
+    .back-btn {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 100;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .back-btn:hover {
+      color: #3a7bd5;
+      text-decoration: none;
+    }
+    /* Hide pages initially */
+    #landing-page, #app-page {
+      display: none;
+    }
+    /* Show active page */
+    .active-page {
+      display: block !important;
+    }
+    /* Medical Alert Styles */
+    .medical-alert {
+      background-color: rgba(253, 237, 237, 0.95);
+      border-left: 4px solid #dc3545;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      color: #721c24;
+    }
+    .medical-note {
+      background-color: rgba(237, 246, 253, 0.95);
+      border-left: 4px solid #0d6efd;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      color: #084298;
+      font-size: 0.9rem;
+    }
+    .organ-selector {
+      margin-bottom: 1rem;
+    }
+    .badge-pill {
+      padding: 8px 15px;
+      margin-right: 10px;
+      font-size: 0.9rem;
+      font-weight: 500;
     }
   </style>
 </head>
@@ -118,36 +291,120 @@
     <div class="loader"></div>
   </div>
 
-  <div class="container py-5">
-    <div class="card mx-auto" style="max-width: 800px;">
-      <div class="card-header">
-        Object Classification
+  <!-- Navigation -->
+  <ul class="nav nav-tabs justify-content-center pt-3">
+    <li class="nav-item">
+      <a class="nav-link active" href="#" id="home-tab">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#" id="app-tab">Diagnostic Tool</a>
+    </li>
+  </ul>
+
+  <!-- Landing Page -->
+  <div id="landing-page" class="active-page">
+    <div class="container">
+      <div class="hero">
+        <h1>MediScan Diagnostic Assistant</h1>
+        <p>An advanced medical imaging analysis system designed to assist healthcare professionals in diagnosing kidney and brain conditions through machine learning.</p>
+        <button class="btn btn-outline-light btn-lg" id="get-started">Get Started</button>
       </div>
-      <div class="card-body">
+
+      <div class="features">
         <div class="row">
-          <div class="col-md-6 text-center">
-            <div class="image-preview" id="preview-container">
-              <video autoplay id="video" poster="https://img.freepik.com/free-vector/group-young-people-posing-photo_52683-18824.jpg"></video>
-              <img src="" id="photo" alt="Preview" style="display: none;">
-              <canvas id="canvas" style="display: none;"></canvas>
+          <div class="col-md-4 mb-4">
+            <div class="feature-card">
+              <div class="feature-icon">🧠</div>
+              <h3>Neurological Assessment</h3>
+              <p>Our system analyzes brain MRI/CT scans to identify abnormalities, lesions, and potential pathologies with high sensitivity.</p>
             </div>
-            <div class="mt-3">
-              <button type="button" id="uload" class="btn btn-primary btn-block">Upload Image</button>
-              <button type="button" id="send" class="btn btn-success btn-block mt-2">Predict</button>
-            </div>
-            <input type="file" id="fileinput" style="display: none;">
-            <!-- Dropdown to choose the HTTP method -->
-            <select id="httpMethod" class="custom-select mt-3">
-              <option value="POST" selected>POST</option>
-              <option value="GET">GET</option>
-            </select>
-            <!-- Hidden API URL -->
-            <input type="hidden" id="url" value="../predict">
           </div>
-          <div class="col-md-6">
-            <h5 class="text-center mb-4">Prediction Results</h5>
-            <div class="border p-3 mb-3 rounded" id="res-part2"></div>
-            <div class="border p-3 rounded" id="res-part"></div>
+          <div class="col-md-4 mb-4">
+            <div class="feature-card">
+              <div class="feature-icon">🔬</div>
+              <h3>Renal Analysis</h3>
+              <p>Evaluate kidney ultrasounds and CT scans to identify potential abnormalities, including cysts, stones, and structural variations.</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="feature-card">
+              <div class="feature-icon">📊</div>
+              <h3>Clinical Decision Support</h3>
+              <p>Receive detailed analysis reports to complement your clinical expertise and enhance diagnostic accuracy.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="medical-alert mt-4">
+          <h4>Important Medical Disclaimer</h4>
+          <p>This tool is designed to assist healthcare professionals and should not replace clinical judgment. All diagnostic suggestions should be verified by qualified medical personnel. This system is intended for use as a supportive tool only.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Page -->
+  <div id="app-page">
+    <a href="#" class="back-btn" id="back-to-home">← Back to Home</a>
+    
+    <div class="container py-5">
+      <div class="card mx-auto" style="max-width: 800px;">
+        <div class="card-header">
+          Medical Imaging Analysis
+        </div>
+        <div class="card-body">
+          <div class="medical-note">
+            <strong>Important:</strong> Please upload only high-quality medical images of kidney or brain scans. Supported formats include CT scans, MRI images, and ultrasound images. For accurate results, ensure images are clear and properly oriented.
+          </div>
+          
+          <div class="row">
+            <div class="col-md-6 text-center">
+              <div class="organ-selector mb-3">
+                <label class="text-dark d-block mb-2 font-weight-bold">Select scan type:</label>
+                <div>
+                  <span class="badge badge-pill badge-primary" id="brain-option">Brain Scan</span>
+                  <span class="badge badge-pill badge-secondary" id="kidney-option">Kidney Scan</span>
+                </div>
+              </div>
+              
+              <div class="image-preview" id="preview-container">
+                <video autoplay id="video" poster="https://img.freepik.com/free-vector/group-young-people-posing-photo_52683-18824.jpg"></video>
+                <img src="" id="photo" alt="Preview" style="display: none;">
+                <canvas id="canvas" style="display: none;"></canvas>
+              </div>
+              <div class="mt-3">
+                <div class="d-flex justify-content-between">
+                  <button type="button" id="uload" class="btn btn-primary flex-fill mr-2">
+                    <span class="mr-2">📁</span> Upload Scan
+                  </button>
+                  <button type="button" id="send" class="btn btn-success flex-fill ml-2">
+                    <span class="mr-2">🔍</span> Analyze
+                  </button>
+                </div>
+              </div>
+              <input type="file" id="fileinput" style="display: none;" accept="image/*">
+              
+              <!-- Dropdown to choose the HTTP method -->
+              <!-- <div class="mt-3">
+                <label for="httpMethod" class="text-dark font-weight-bold">API Method:</label>
+                <select id="httpMethod" class="custom-select">
+                  <option value="POST" selected>POST</option>
+                  <option value="GET">GET</option>
+                </select>
+              </div> -->
+              <!-- Hidden API URL -->
+              <input type="hidden" id="url" value="../predict">
+              <input type="hidden" id="scan-type" value="brain">
+            </div>
+            <div class="col-md-6">
+              <h5 class="text-center mb-4 text-dark font-weight-bold">Diagnostic Results</h5>
+              <div class="border p-3 mb-3 rounded result-container bg-white" id="res-part2"></div>
+              <div class="border p-3 rounded result-container bg-white" id="res-part">
+                <div class="text-center text-secondary">
+                  <p>Upload a medical scan image and click "Analyze" to see diagnostic results</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -163,38 +420,51 @@
   <script>
     let base_data = "";
 
-    function sendRequest(base64Data, method = "POST") {
+    function sendRequest(base64Data, method = "POST", scanType = "brain") {
       const url = $("#url").val();
       $("#loading").show();
+
+      // Add the scan type to the request data
+      const requestData = {
+        image: base64Data,
+        scan_type: scanType
+      };
 
       $.ajax({
         url: url,
         type: method,
         contentType: "application/json",
-        data: method === "POST" ? JSON.stringify({ image: base64Data }) : null,
+        data: method === "POST" ? JSON.stringify(requestData) : null,
         success: function (res) {
-          console.log("API Response:", res); // Debug: log the API response
+          console.log("API Response:", res);
 
-          // Check if the response is an array (as in your original code)
+          // Check if the response is an array
           if (Array.isArray(res)) {
-            $("#res-part").html("<pre>" + JSON.stringify(res[0], null, 2) + "</pre>");
+            // Format the response with medical terminology
+            let formattedResponse = res[0];
+            if (typeof formattedResponse === 'object') {
+              // Format diagnostic results with medical terminology
+              $("#res-part").html("<pre>" + JSON.stringify(formattedResponse, null, 2) + "</pre>");
+            } else {
+              $("#res-part").html("<pre>" + formattedResponse + "</pre>");
+            }
+            
             if (res[1] && res[1].image) {
-              $("#res-part2").html("<img class='img-fluid' src='data:image/jpeg;base64," + res[1].image + "' alt='Result Image'>");
+              $("#res-part2").html("<img class='img-fluid rounded' src='data:image/jpeg;base64," + res[1].image + "' alt='Highlighted Scan'>");
             }
           }
-          // If the response is an object, adjust accordingly
+          // If the response is an object
           else if (typeof res === 'object') {
             if (res.prediction) {
               $("#res-part").html("<pre>" + JSON.stringify(res.prediction, null, 2) + "</pre>");
             } else {
-              // Fallback: display the entire response
               $("#res-part").html("<pre>" + JSON.stringify(res, null, 2) + "</pre>");
             }
+            
             if (res.image) {
-              $("#res-part2").html("<img class='img-fluid' src='data:image/jpeg;base64," + res.image + "' alt='Result Image'>");
+              $("#res-part2").html("<img class='img-fluid rounded' src='data:image/jpeg;base64," + res.image + "' alt='Highlighted Scan'>");
             }
           } else {
-            // Fallback for unexpected types
             $("#res-part").html("<pre>" + res + "</pre>");
           }
 
@@ -210,7 +480,38 @@
 
     $(document).ready(function () {
       $("#loading").hide();
+      
+      // Navigation handlers
+      $("#home-tab, #back-to-home").click(function(e) {
+        e.preventDefault();
+        $("#landing-page").addClass("active-page");
+        $("#app-page").removeClass("active-page");
+        $("#home-tab").addClass("active");
+        $("#app-tab").removeClass("active");
+      });
+      
+      $("#app-tab, #get-started").click(function(e) {
+        e.preventDefault();
+        $("#app-page").addClass("active-page");
+        $("#landing-page").removeClass("active-page");
+        $("#app-tab").addClass("active");
+        $("#home-tab").removeClass("active");
+      });
 
+      // Scan type selection
+      $("#brain-option").click(function() {
+        $("#brain-option").removeClass("badge-secondary").addClass("badge-primary");
+        $("#kidney-option").removeClass("badge-primary").addClass("badge-secondary");
+        $("#scan-type").val("brain");
+      });
+      
+      $("#kidney-option").click(function() {
+        $("#kidney-option").removeClass("badge-secondary").addClass("badge-primary");
+        $("#brain-option").removeClass("badge-primary").addClass("badge-secondary");
+        $("#scan-type").val("kidney");
+      });
+
+      // File upload handler
       $("#uload").click(function () {
         $("#fileinput").trigger("click");
       });
@@ -227,6 +528,10 @@
               const ctx = canvas.getContext("2d");
               ctx.drawImage(this, 0, 0);
               base_data = canvas.toDataURL("image/jpeg").split(",")[1];
+              
+              // Show a success message in the results area with medical terminology
+              const scanType = $("#scan-type").val();
+              $("#res-part").html(`<div class='alert alert-info'>${scanType.charAt(0).toUpperCase() + scanType.slice(1)} scan image loaded successfully. Click 'Analyze' to process diagnostic analysis.</div>`);
             };
             img.src = e.target.result;
             $("#photo").attr("src", e.target.result).show();
@@ -236,10 +541,25 @@
         }
       });
 
+      // Analyze button handler
       $("#send").click(function () {
+        if (!base_data) {
+          $("#res-part").html("<div class='alert alert-warning'>Please upload a medical scan image first.</div>");
+          return;
+        }
+        
         const method = $("#httpMethod").val();
-        sendRequest(base_data, method);
+        const scanType = $("#scan-type").val();
+        
+        // Show processing message
+        $("#res-part").html("<div class='alert alert-info'>Processing medical image analysis. Please wait...</div>");
+        
+        sendRequest(base_data, method, scanType);
       });
+      
+      // Initialize with landing page visible
+      $("#landing-page").addClass("active-page");
+      $("#home-tab").addClass("active");
     });
   </script>
 </body>
