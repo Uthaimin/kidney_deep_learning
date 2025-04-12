@@ -1,11 +1,11 @@
-stages_involved:
+stages:
   data_ingestion:
     cmd: python src/kidneyClassifier/pipeline/stage_01_data_ingestion.py
     deps:
       - src/kidneyClassifier/pipeline/stage_01_data_ingestion.py
       - config/config.yaml
     outs:
-      - artifacts/data_ingestion/training folder
+      - artifacts/data_ingestion/Training
 
 
   prepare_base_model:
@@ -28,7 +28,7 @@ stages_involved:
     deps:
       - src/kidneyClassifier/pipeline/stage_03_model_training.py
       - config/config.yaml
-      - artifacts/data_ingestion/training folder
+      - artifacts/data_ingestion/Training
       - artifacts/prepare_base_model
     params:
       - IMAGE_SIZE
@@ -44,7 +44,7 @@ stages_involved:
     deps:
       - src/kidneyClassifier/pipeline/stage_04_model_evaluation.py
       - config/config.yaml
-      - artifacts/data_ingestion/training folder
+      - artifacts/data_ingestion/kidney-ct-scan-image
       - artifacts/training/model.h5
     params:
       - IMAGE_SIZE
