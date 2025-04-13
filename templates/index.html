@@ -291,120 +291,36 @@
     <div class="loader"></div>
   </div>
 
-  <!-- Navigation -->
-  <ul class="nav nav-tabs justify-content-center pt-3">
-    <li class="nav-item">
-      <a class="nav-link active" href="#" id="home-tab">Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#" id="app-tab">Diagnostic Tool</a>
-    </li>
-  </ul>
-
-  <!-- Landing Page -->
-  <div id="landing-page" class="active-page">
-    <div class="container">
-      <div class="hero">
-        <h1>MediScan Diagnostic Assistant</h1>
-        <p>An advanced medical imaging analysis system designed to assist healthcare professionals in diagnosing kidney and brain conditions through machine learning.</p>
-        <button class="btn btn-outline-light btn-lg" id="get-started">Get Started</button>
+  <div class="container py-5">
+    <div class="card mx-auto" style="max-width: 800px;">
+      <div class="card-header">
+        Kidney Machine
       </div>
-
-      <div class="features">
+      <div class="card-body">
         <div class="row">
-          <div class="col-md-4 mb-4">
-            <div class="feature-card">
-              <div class="feature-icon">🧠</div>
-              <h3>Neurological Assessment</h3>
-              <p>Our system analyzes brain MRI/CT scans to identify abnormalities, lesions, and potential pathologies with high sensitivity.</p>
+          <div class="col-md-6 text-center">
+            <div class="image-preview" id="preview-container">
+              <video autoplay id="video" poster="https://img.freepik.com/free-vector/group-young-people-posing-photo_52683-18824.jpg"></video>
+              <img src="" id="photo" alt="Preview" style="display: none;">
+              <canvas id="canvas" style="display: none;"></canvas>
             </div>
+            <div class="mt-3">
+              <button type="button" id="uload" class="btn btn-primary btn-block">Upload Image</button>
+              <button type="button" id="send" class="btn btn-success btn-block mt-2">Predict</button>
+            </div>
+            <input type="file" id="fileinput" style="display: none;">
+            <!-- Dropdown to choose the HTTP method -->
+            <!-- <select id="httpMethod" class="custom-select mt-3">
+              <option value="POST" selected>POST</option>
+              <option value="GET">GET</option>
+            </select> -->
+            <!-- Hidden API URL -->
+            <input type="hidden" id="url" value="../predict">
           </div>
-          <div class="col-md-4 mb-4">
-            <div class="feature-card">
-              <div class="feature-icon">🔬</div>
-              <h3>Renal Analysis</h3>
-              <p>Evaluate kidney ultrasounds and CT scans to identify potential abnormalities, including cysts, stones, and structural variations.</p>
-            </div>
-          </div>
-          <div class="col-md-4 mb-4">
-            <div class="feature-card">
-              <div class="feature-icon">📊</div>
-              <h3>Clinical Decision Support</h3>
-              <p>Receive detailed analysis reports to complement your clinical expertise and enhance diagnostic accuracy.</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="medical-alert mt-4">
-          <h4>Important Medical Disclaimer</h4>
-          <p>This tool is designed to assist healthcare professionals and should not replace clinical judgment. All diagnostic suggestions should be verified by qualified medical personnel. This system is intended for use as a supportive tool only.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Application Page -->
-  <div id="app-page">
-    <a href="#" class="back-btn" id="back-to-home">← Back to Home</a>
-    
-    <div class="container py-5">
-      <div class="card mx-auto" style="max-width: 800px;">
-        <div class="card-header">
-          Medical Imaging Analysis
-        </div>
-        <div class="card-body">
-          <div class="medical-note">
-            <strong>Important:</strong> Please upload only high-quality medical images of kidney or brain scans. Supported formats include CT scans, MRI images, and ultrasound images. For accurate results, ensure images are clear and properly oriented.
-          </div>
-          
-          <div class="row">
-            <div class="col-md-6 text-center">
-              <div class="organ-selector mb-3">
-                <label class="text-dark d-block mb-2 font-weight-bold">Select scan type:</label>
-                <div>
-                  <span class="badge badge-pill badge-primary" id="brain-option">Brain Scan</span>
-                  <span class="badge badge-pill badge-secondary" id="kidney-option">Kidney Scan</span>
-                </div>
-              </div>
-              
-              <div class="image-preview" id="preview-container">
-                <video autoplay id="video" poster="https://img.freepik.com/free-vector/group-young-people-posing-photo_52683-18824.jpg"></video>
-                <img src="" id="photo" alt="Preview" style="display: none;">
-                <canvas id="canvas" style="display: none;"></canvas>
-              </div>
-              <div class="mt-3">
-                <div class="d-flex justify-content-between">
-                  <button type="button" id="uload" class="btn btn-primary flex-fill mr-2">
-                    <span class="mr-2">📁</span> Upload Scan
-                  </button>
-                  <button type="button" id="send" class="btn btn-success flex-fill ml-2">
-                    <span class="mr-2">🔍</span> Analyze
-                  </button>
-                </div>
-              </div>
-              <input type="file" id="fileinput" style="display: none;" accept="image/*">
-              
-              <!-- Dropdown to choose the HTTP method -->
-              <!-- <div class="mt-3">
-                <label for="httpMethod" class="text-dark font-weight-bold">API Method:</label>
-                <select id="httpMethod" class="custom-select">
-                  <option value="POST" selected>POST</option>
-                  <option value="GET">GET</option>
-                </select>
-              </div> -->
-              <!-- Hidden API URL -->
-              <input type="hidden" id="url" value="../predict">
-              <input type="hidden" id="scan-type" value="brain">
-            </div>
-            <div class="col-md-6">
-              <h5 class="text-center mb-4 text-dark font-weight-bold">Diagnostic Results</h5>
-              <div class="border p-3 mb-3 rounded result-container bg-white" id="res-part2"></div>
-              <div class="border p-3 rounded result-container bg-white" id="res-part">
-                <div class="text-center text-secondary">
-                  <p>Upload a medical scan image and click "Analyze" to see diagnostic results</p>
-                </div>
-              </div>
-            </div>
+          <div class="col-md-6">
+            <h5 class="text-center mb-4">Prediction Results</h5>
+            <div class="border p-3 mb-3 rounded" id="res-part2"></div>
+            <div class="border p-3 rounded" id="res-part"></div>
           </div>
         </div>
       </div>
